@@ -5,7 +5,7 @@ const DEFAULT_FEATURES = ["easy to use", "easy to install", "easy to enjoy"];
 export interface WhatIsEsimProps {
   title?: string;
   description?: string;
-  features?: string[];
+  features?: string[] | { value: string }[];
   ctaLabel?: string;
   ctaHref?: string;
   desktopImageSrc?: string;
@@ -23,6 +23,9 @@ export default function WhatIsEsim({
   mobileImageSrc = "https://media.holafly.com/public/images/home/whatsesim-mobile.webp?width=387&height=220&optimize=medium&fit=cover&quality=80&format=webp",
   backgroundShapeSrc = "https://media.holafly.com/public/illustrations/home/whatsesim-shape-yellowbkg-tablet.webp",
 }: WhatIsEsimProps) {
+  const normalizedFeatures = features.map((f) =>
+    typeof f === "string" ? f : f.value
+  );
   return (
     <section className="mx-auto max-w-[1440px] w-[90%] my-20 overflow-hidden lg:overflow-visible">
       <div className="relative w-full overflow-visible">
@@ -56,7 +59,7 @@ export default function WhatIsEsim({
               {/* Feature tags */}
               <div className="flex flex-col gap-2">
                 <div className="flex flex-wrap items-center gap-2">
-                  {features.map((feature, i) => (
+                  {normalizedFeatures.map((feature, i) => (
                     <div key={feature} className="flex items-center gap-0">
                       <div className="flex items-center">
                         <div className="flex items-center justify-center w-6 h-6 mr-1">
@@ -66,7 +69,7 @@ export default function WhatIsEsim({
                           {feature}
                         </span>
                       </div>
-                      {i < features.length - 1 && (
+                      {i < normalizedFeatures.length - 1 && (
                         <div className="w-px h-4 bg-holafly-gray mx-2" />
                       )}
                     </div>

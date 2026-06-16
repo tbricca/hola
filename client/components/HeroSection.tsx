@@ -14,7 +14,7 @@ export interface HeroSectionProps {
   titleHighlight?: string;
   titleEnd?: string;
   description?: string;
-  features?: string[];
+  features?: string[] | { value: string }[];
   heroImageSrc?: string;
   backgroundImageSrc?: string;
   findPlanLabel?: string;
@@ -37,6 +37,9 @@ export default function HeroSection({
   daysPlaceholder = "For how many days?",
   ctaLabel = "Search plan",
 }: HeroSectionProps) {
+  const normalizedFeatures = features.map((f) =>
+    typeof f === "string" ? f : f.value
+  );
   const [visibleFeature, setVisibleFeature] = useState(0);
 
   return (
@@ -72,11 +75,11 @@ export default function HeroSection({
               {/* Rotating features */}
               <div className="h-7 mb-6 overflow-hidden relative">
                 <div className="flex flex-col h-full">
-                  {features.map((feature, i) => (
+                  {normalizedFeatures.map((feature, i) => (
                     <div
                       key={feature}
                       className={`flex items-center gap-2.5 min-h-[28px] select-none transition-opacity duration-300 ${
-                        i === visibleFeature % features.length
+                        i === visibleFeature % normalizedFeatures.length
                           ? "opacity-100"
                           : "opacity-0 absolute"
                       }`}
