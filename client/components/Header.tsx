@@ -104,11 +104,6 @@ export default function Header() {
             className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center h-full py-2"
             aria-label="Holafly home"
           >
-            <img
-              src="https://media.holafly.com/public/logos/holafly.svg"
-              alt="Holafly"
-              className="w-[115px] h-auto"
-            />
           </Link>
 
           {/* Right: actions */}
