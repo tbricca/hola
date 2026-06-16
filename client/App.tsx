@@ -10,6 +10,7 @@ import Header from "@/components/Header";
 import Index from "./pages/Index";
 import Placeholder from "./pages/Placeholder";
 import NotFound from "./pages/NotFound";
+import BuilderPage from "./pages/BuilderPage";
 
 const queryClient = new QueryClient();
 
@@ -30,7 +31,8 @@ const App = () => (
           <Route path="/affiliates" element={<Placeholder />} />
           <Route path="/for-business" element={<Placeholder />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
+          {/* Builder.io catch-all — resolves pages from the visual CMS */}
+          <Route path="*" element={<BuilderPage />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

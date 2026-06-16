@@ -1,22 +1,49 @@
 import { useState } from "react";
 import { Search, Calendar, Check } from "lucide-react";
 
-const FEATURES = [
+const DEFAULT_FEATURES = [
   "Unlimited data",
   "No roaming charges",
   "Keep your physical SIM",
   "Easy installation",
 ];
 
-export default function HeroSection() {
+export interface HeroSectionProps {
+  eyebrow?: string;
+  titleStart?: string;
+  titleHighlight?: string;
+  titleEnd?: string;
+  description?: string;
+  features?: string[];
+  heroImageSrc?: string;
+  backgroundImageSrc?: string;
+  findPlanLabel?: string;
+  searchPlaceholder?: string;
+  daysPlaceholder?: string;
+  ctaLabel?: string;
+}
+
+export default function HeroSection({
+  eyebrow = "eSIM for international travel",
+  titleStart = "Stay connected",
+  titleHighlight = "wherever",
+  titleEnd = "you go",
+  description = "Get Unlimited Data and total peace of mind on every trip with the world's most trusted travel eSIM.",
+  features = DEFAULT_FEATURES,
+  heroImageSrc = "https://media.holafly.com/public/features/home/images/home-hero-en.png?width=460&height=630&optimize=medium&fit=cover&quality=80&format=webp",
+  backgroundImageSrc = "https://media.holafly.com/public/images/home/home-hero-bg.svg",
+  findPlanLabel = "Find your ideal plan",
+  searchPlaceholder = "Where are you traveling?",
+  daysPlaceholder = "For how many days?",
+  ctaLabel = "Search plan",
+}: HeroSectionProps) {
   const [visibleFeature, setVisibleFeature] = useState(0);
 
   return (
     <section
       className="relative w-full"
       style={{
-        backgroundImage:
-          "url('https://media.holafly.com/public/images/home/home-hero-bg.svg')",
+        backgroundImage: `url('${backgroundImageSrc}')`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -27,18 +54,17 @@ export default function HeroSection() {
           {/* Left content */}
           <div className="flex-1 flex flex-col gap-2 text-holafly-dark lg:-mt-16">
             <h1 className="text-base leading-[22px] mb-2 w-full text-left">
-              eSIM for international travel
+              {eyebrow}
             </h1>
 
             <p className="text-[40px] sm:text-[48px] font-medium leading-[48px] sm:leading-[56px] text-left max-w-[496px]">
-              Stay connected{" "}
-              <span className="text-holafly-coral">wherever</span>
-              {" "}you go
+              {titleStart}{" "}
+              <span className="text-holafly-coral">{titleHighlight}</span>
+              {titleEnd ? ` ${titleEnd}` : ""}
             </p>
 
             <p className="text-base leading-[22px] mt-3 mb-6 text-left text-balance">
-              Get Unlimited Data and total peace of mind on every trip with the
-              world's most trusted travel eSIM.
+              {description}
             </p>
 
             {/* Features & search form container */}
@@ -46,15 +72,14 @@ export default function HeroSection() {
               {/* Rotating features */}
               <div className="h-7 mb-6 overflow-hidden relative">
                 <div className="flex flex-col h-full">
-                  {FEATURES.map((feature, i) => (
+                  {features.map((feature, i) => (
                     <div
                       key={feature}
                       className={`flex items-center gap-2.5 min-h-[28px] select-none transition-opacity duration-300 ${
-                        i === visibleFeature % FEATURES.length
+                        i === visibleFeature % features.length
                           ? "opacity-100"
                           : "opacity-0 absolute"
                       }`}
-                      onAnimationEnd={() => {}}
                     >
                       <span className="text-[#32A45E] text-[22px] font-medium shrink-0">
                         <Check className="h-6 w-6" />
@@ -71,7 +96,7 @@ export default function HeroSection() {
               <div className="w-[80%]">
                 <div className="flex flex-col gap-3">
                   <p className="text-sm font-bold leading-5 text-holafly-dark mb-4">
-                    Find your ideal plan
+                    {findPlanLabel}
                   </p>
 
                   {/* Search input */}
@@ -81,7 +106,7 @@ export default function HeroSection() {
                       <div className="w-px h-3 bg-holafly-gray rounded-full" />
                       <input
                         type="text"
-                        placeholder="Where are you traveling?"
+                        placeholder={searchPlaceholder}
                         className="flex-1 bg-transparent border-none outline-none text-base leading-6 text-holafly-dark placeholder:text-holafly-gray"
                       />
                     </div>
@@ -95,7 +120,7 @@ export default function HeroSection() {
                     <Calendar className="h-6 w-6 text-holafly-dark" />
                     <div className="w-px h-3 bg-holafly-gray rounded-full" />
                     <p className="text-holafly-gray text-left w-full">
-                      For how many days?
+                      {daysPlaceholder}
                     </p>
                   </button>
 
@@ -104,7 +129,7 @@ export default function HeroSection() {
                     type="button"
                     className="flex items-center justify-center gap-2 rounded-xl bg-holafly-green w-full py-3 px-5 text-base font-medium text-holafly-dark transition-colors hover:bg-[#3dd878]"
                   >
-                    Search plan
+                    {ctaLabel}
                   </button>
                 </div>
               </div>
@@ -118,14 +143,14 @@ export default function HeroSection() {
               width={460}
               height={630}
               loading="eager"
-              src="https://media.holafly.com/public/features/home/images/home-hero-en.png?width=460&height=630&optimize=medium&fit=cover&quality=80&format=webp"
+              src={heroImageSrc}
               className="max-h-[640px] max-w-full object-contain ml-auto"
             />
           </div>
         </div>
       </div>
 
-      {/* Wave at bottom (hidden on desktop, just spacing) */}
+      {/* Wave at bottom */}
       <div className="relative -mt-16">
         <img
           src="https://media.holafly.com/public/images/home/product-wave.svg"
