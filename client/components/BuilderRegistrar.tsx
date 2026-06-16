@@ -1,17 +1,29 @@
-import { Content, isPreviewing } from "@builder.io/sdk-react";
+import { useEffect } from "react";
+import { isPreviewing, register } from "@builder.io/sdk-react";
 import { builderComponents } from "../builder-registry";
 
-const BUILDER_API_KEY = import.meta.env.VITE_PUBLIC_BUILDER_KEY as string;
-
 export default function BuilderRegistrar() {
-  if (!isPreviewing()) return null;
+  useEffect(() => {
+    if (!isPreviewing()) return;
 
-  return (
-    <Content
-      model="page"
-      content={null}
-      apiKey={BUILDER_API_KEY}
-      customComponents={builderComponents}
-    />
-  );
+    builderComponents.forEach((comp) => {
+      register("insertMenu", {
+        name: comp.name,
+        items: [
+          {
+            name: comp.name,
+            item: {
+              "@type": "@builder.io/sdk:Element",
+              component: {
+                name: comp.name,
+                options: {},
+              },
+            },
+          },
+        ],
+      });
+    });
+  }, []);
+
+  return null;
 }
