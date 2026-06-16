@@ -57,6 +57,22 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Holafly brand colors
+        holafly: {
+          green: "#48EC86",
+          coral: "#E6485C",
+          dark: "#292B2E",
+          gray: "#56575A",
+          light: "#F8F8FB",
+          border: "#E4E6EA",
+        },
+      },
+      backgroundImage: {
+        "holafly-cta": "linear-gradient(90deg, #E12B57 0%, #C8094E 100%)",
+      },
+      fontFamily: {
+        sans: ['"Modern Era"', '"Inter"', "sans-serif"],
+        "modern-era": ['"Modern Era"', '"Inter"', "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
