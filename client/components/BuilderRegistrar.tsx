@@ -1,10 +1,13 @@
 import { useEffect } from "react";
-import { isPreviewing, register } from "@builder.io/sdk-react";
+import { register } from "@builder.io/sdk-react";
 import { builderComponents } from "../builder-registry";
+
+let registered = false;
 
 export default function BuilderRegistrar() {
   useEffect(() => {
-    if (!isPreviewing()) return;
+    if (registered) return;
+    registered = true;
 
     builderComponents.forEach((comp) => {
       register("insertMenu", {
