@@ -4,8 +4,8 @@ const FEATURES = ["easy to use", "easy to install", "easy to enjoy"];
 
 export default function WhatIsEsim() {
   return (
-    <section className="mx-auto max-w-[1440px] w-[90%] my-20">
-      <div className="relative w-full">
+    <section className="mx-auto max-w-[1440px] w-[90%] my-20 overflow-hidden lg:overflow-visible">
+      <div className="relative w-full overflow-visible">
         {/* Main card */}
         <div
           className="relative grid grid-cols-1 lg:grid-cols-2 gap-10 items-center rounded-3xl py-10 lg:py-[60px] px-6 sm:px-10 lg:pl-20 lg:pr-[300px] w-full"
@@ -73,20 +73,19 @@ export default function WhatIsEsim() {
             </div>
           </div>
 
-          {/* Desktop image - absolutely positioned */}
-          <div className="hidden lg:block absolute right-[-50px] top-[43%] -translate-y-1/2 w-[526px]">
-            <div className="relative h-[320px] w-full">
-              <div className="absolute h-full">
-                <img
-                  alt="arm with phone"
-                  width={526}
-                  height={366}
-                  loading="lazy"
-                  src="https://media.holafly.com/public/images/home/whatsesim-tablet-desktop.webp?width=526&height=366&optimize=medium&fit=cover&quality=80&format=webp"
-                  className="absolute w-[526px] h-[366px] object-contain"
-                />
-              </div>
-            </div>
+        </div>
+
+        {/* Desktop image - positioned outside card so it's not clipped by rounded corners */}
+        <div className="hidden lg:block absolute right-[-50px] top-[43%] -translate-y-1/2 w-[526px] z-[2]">
+          <div className="relative h-[320px] w-full">
+            <img
+              alt="arm with phone"
+              width={526}
+              height={366}
+              loading="lazy"
+              src="https://media.holafly.com/public/images/home/whatsesim-tablet-desktop.webp?width=526&height=366&optimize=medium&fit=cover&quality=80&format=webp"
+              className="absolute w-[526px] h-[366px] object-contain"
+            />
           </div>
         </div>
 
