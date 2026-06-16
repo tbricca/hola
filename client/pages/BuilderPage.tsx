@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { fetchOneEntry, Content, isPreviewing } from "@builder.io/sdk-react";
 import { builderComponents } from "../builder-registry";
 
-// All page-kind models in this Builder space, ordered by published-entry count
-// (descending). The first non-null fetchOneEntry result wins.
 const BUILDER_MODELS = [
-  "page",           // 21 published entries
-  "customer-pages", // 4 published entries
-  "merch-pages",    // 4 published entries
-  "landing-pages",  // 3 published entries
+  "page",
+  "customer-pages",
+  "merch-pages",
+  "landing-pages",
 ] as const;
 
 const BUILDER_API_KEY = import.meta.env.VITE_PUBLIC_BUILDER_KEY as string;
@@ -21,8 +19,11 @@ type FoundContent = {
 
 export default function BuilderPage() {
   const location = useLocation();
+  const [searchParams] = useSearchParams();
   const [content, setContent] = useState<FoundContent | null>(null);
   const [loading, setLoading] = useState(true);
+
+  const locale = searchParams.get("locale") || "en";
 
   useEffect(() => {
     setLoading(true);
@@ -35,7 +36,8 @@ export default function BuilderPage() {
         const result = await fetchOneEntry({
           model,
           apiKey: BUILDER_API_KEY,
-          userAttributes: { urlPath },
+          locale,
+          userAttributes: { urlPath, locale },
         });
         if (result) {
           setContent({ model, result });
@@ -47,12 +49,9 @@ export default function BuilderPage() {
     };
 
     fetchContent();
-  }, [location.pathname]);
+  }, [location.pathname, locale]);
 
-  if (loading) {
-    // Render nothing while resolving to avoid a flash of 404
-    return null;
-  }
+  if (loading) return null;
 
   if (!content && !isPreviewing()) {
     return (
@@ -71,6 +70,7 @@ export default function BuilderPage() {
       model={model}
       content={result}
       apiKey={BUILDER_API_KEY}
+      locale={locale}
       customComponents={builderComponents}
     />
   );
