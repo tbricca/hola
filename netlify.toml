@@ -1,14 +1,11 @@
 [build]
-command = "npm run build:client"
-functions = "netlify/functions"
-publish = "dist/spa"
+  command = "pnpm run build"
+  publish = "dist/spa"
 
+[build.environment]
+  VITE_PUBLIC_BUILDER_KEY = "695b5927986f48709c8c9f221b055aa4"
 
-[functions]
-external_node_modules = ["express"]
-node_bundler = "esbuild"
 [[redirects]]
-force = true
-from = "/api/*"
-status = 200
-to = "/.netlify/functions/api/:splat"
+  from = "/*"
+  to = "/index.html"
+  status = 200
