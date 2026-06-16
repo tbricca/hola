@@ -69,10 +69,13 @@ export const builderComponents: RegisteredComponent[] = [
     component: TrustBar,
     name: "Trust bar",
     inputs: [
-      // Text — localizable
+      // Numbers — not localizable
       { name: "rating", type: "string", defaultValue: "4.7", localized: false, helperText: "Numeric rating (same across locales)" },
       { name: "ratingMax", type: "string", defaultValue: "5", localized: false },
       { name: "reviewCount", type: "string", defaultValue: "97,343+", localized: false, helperText: "Review count number" },
+      // Text — localizable
+      { name: "reviewPrefix", type: "string", defaultValue: "Based on", helperText: "Text before the review count (e.g. 'Based on')" },
+      { name: "reviewSuffix", type: "string", defaultValue: "customer reviews on", helperText: "Text after the review count (e.g. 'customer reviews on')" },
       { name: "platformName", type: "string", defaultValue: "TrustPilot" },
       // Image — not localizable
       { name: "starImageSrc", type: "file", localized: false, allowedFileTypes: ["jpeg", "jpg", "png", "webp", "svg"], defaultValue: "https://media.holafly.com/public/images/common/trustpilot-star.png?width=40&height=40&optimize=medium&fit=cover&quality=80&format=webp" },

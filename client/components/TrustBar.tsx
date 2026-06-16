@@ -3,6 +3,8 @@ export interface TrustBarProps {
   ratingMax?: string;
   starImageSrc?: string;
   reviewCount?: string;
+  reviewPrefix?: string;
+  reviewSuffix?: string;
   platformName?: string;
 }
 
@@ -11,6 +13,8 @@ export default function TrustBar({
   ratingMax = "5",
   starImageSrc = "https://media.holafly.com/public/images/common/trustpilot-star.png?width=40&height=40&optimize=medium&fit=cover&quality=80&format=webp",
   reviewCount = "97,343+",
+  reviewPrefix = "Based on",
+  reviewSuffix = "customer reviews on",
   platformName = "TrustPilot",
 }: TrustBarProps) {
   return (
@@ -37,9 +41,9 @@ export default function TrustBar({
           </div>
           <div className="flex flex-col">
             <p className="text-base leading-6 text-left">
-              Based on {reviewCount}
+              {reviewPrefix} {reviewCount}
               <br className="sm:hidden" />
-              {" "}customer reviews on{" "}
+              {" "}{reviewSuffix}{" "}
               <span className="font-bold underline cursor-pointer">
                 {platformName}
               </span>
