@@ -53,7 +53,7 @@ export const builderComponents: RegisteredComponent[] = [
       { name: "titleHighlight", type: "string", defaultValue: "wherever", helperText: "Highlighted (coral) word" },
       { name: "titleEnd", type: "string", defaultValue: "you go", helperText: "Text after the highlighted word" },
       { name: "description", type: "longText", defaultValue: "Get Unlimited Data and total peace of mind on every trip with the world's most trusted travel eSIM." },
-      { name: "features", type: "list", defaultValue: [{ value: "Unlimited data" }, { value: "No roaming charges" }, { value: "Keep your physical SIM" }, { value: "Easy installation" }], subFields: [{ name: "value", type: "string", defaultValue: "Feature" }], helperText: "Rotating feature bullets" },
+      { name: "features", type: "list", defaultValue: [{ value: "Unlimited data" }, { value: "No roaming charges" }, { value: "Keep your physical SIM" }, { value: "Easy installation" }], subFields: [{ name: "value", type: "string", defaultValue: "Feature", localized: true }], helperText: "Rotating feature bullets" },
       { name: "findPlanLabel", type: "string", defaultValue: "Find your ideal plan" },
       { name: "searchPlaceholder", type: "string", defaultValue: "Where are you traveling?" },
       { name: "daysPlaceholder", type: "string", defaultValue: "For how many days?" },
@@ -110,7 +110,7 @@ export const builderComponents: RegisteredComponent[] = [
       // Text — localizable
       { name: "title", type: "string", defaultValue: "What is an eSIM?", required: true },
       { name: "description", type: "longText", defaultValue: "An eSIM is a virtual or digital SIM card that allows you to connect to mobile networks without a physical SIM card. You can store multiple eSIMs, accessing different carriers, numbers, and data plans—ideal for travel or everyday use. Activate it on your phone to get online in minutes." },
-      { name: "features", type: "list", defaultValue: [{ value: "easy to use" }, { value: "easy to install" }, { value: "easy to enjoy" }], subFields: [{ name: "value", type: "string", defaultValue: "easy to use" }] },
+      { name: "features", type: "list", defaultValue: [{ value: "easy to use" }, { value: "easy to install" }, { value: "easy to enjoy" }], subFields: [{ name: "value", type: "string", defaultValue: "easy to use", localized: true }] },
       { name: "ctaLabel", type: "string", defaultValue: "More details" },
       { name: "ctaHref", type: "url", defaultValue: "https://esim.holafly.com/how-to/what-is-esim/" },
       // Images — not localizable
