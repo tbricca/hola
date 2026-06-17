@@ -142,6 +142,8 @@ export const builderComponents: RegisteredComponent[] = [
     inputs: [
       { name: "ctaLabel", type: "string", localized: true, defaultValue: "Get the App" },
       { name: "ctaHref", type: "url", localized: true, defaultValue: "https://esim.holafly.com/get-app/" },
+      { name: "languageLabel", type: "string", localized: true, defaultValue: "EN", helperText: "Language code shown in header (e.g. EN, ES, FR)" },
+      { name: "currencyLabel", type: "string", localized: true, defaultValue: "USD ($)", helperText: "Currency label shown in header" },
       {
         name: "banners",
         type: "list",

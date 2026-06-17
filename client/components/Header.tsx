@@ -26,6 +26,8 @@ export interface HeaderProps {
   banners?: Banner[];
   ctaLabel?: string;
   ctaHref?: string;
+  languageLabel?: string;
+  currencyLabel?: string;
 }
 
 const DEFAULT_NAV_LINKS: NavLink[] = [
@@ -54,6 +56,8 @@ export default function Header({
   banners = DEFAULT_BANNERS,
   ctaLabel = "Get the App",
   ctaHref = "https://esim.holafly.com/get-app/",
+  languageLabel = "EN",
+  currencyLabel = "USD ($)",
 }: HeaderProps) {
   const [bannerIndex, setBannerIndex] = useState(0);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -136,7 +140,7 @@ export default function Header({
             >
               <Globe className="h-5 w-5" />
               <span className="text-sm font-medium whitespace-nowrap">
-                EN - <span className="text-holafly-gray">USD ($)</span>
+                {languageLabel} - <span className="text-holafly-gray">{currencyLabel}</span>
               </span>
             </button>
 
